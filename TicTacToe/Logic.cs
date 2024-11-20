@@ -16,6 +16,30 @@ public static class Logic
         return grid;
     }
     
+    /*
+     //unsure why this doesn't work on the multidimensional array grid[x,y]
+     
+    public static void GridInitialPopulation(Array grid, int sizeA, int sizeB)
+    {
+        for (int x = 0; x < sizeA; x++)
+        {
+            for (int y = 0; y < sizeB; y++)
+            {
+                grid[x, y] = ' ';
+            }
+        }
+    }
+    
+    public static bool GridPopulationCheck(Array grid, int row, int column, Char player)
+    {
+        
+        if (grid[row, column] == ' ')
+        {
+            return true;
+        }
+        else return false;
+    }
+    */
     
     
 }
