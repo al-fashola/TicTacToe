@@ -30,6 +30,7 @@ class Program
        secondEntrySuccessful = int.TryParse(MatrixCoordinates.SecondEntry.ToString(), out matrixCol);
        
        bool gridPopulationSuccessful = false;
+       bool aiPopulationSuccessful = false;
 
        while (gridPopulationSuccessful == false)
        {
@@ -45,11 +46,12 @@ class Program
            }
            else
            {
-               gridPopulationSuccessful = Logic.GridPopulation(grid, matrixRow, matrixCol, 'X');
                //populate the grid with Player x, coordinates and then have the Ai populate as well
+               gridPopulationSuccessful = Logic.GridPopulation(grid, matrixRow, matrixCol, 'X');
+               aiPopulationSuccessful = Logic.AiPopulation(grid, MATRIX_GRID_SIZE);
                break;
            }
-           // Only repeats the steps here 
+           // Only repeats the steps here when else above is not true 
            MatrixCoordinates =  Ui.UserCoordinatesEntry();
            firstEntrySuccessful = int.TryParse(MatrixCoordinates.FirstEntry.ToString(), out matrixRow);
            secondEntrySuccessful = int.TryParse(MatrixCoordinates.SecondEntry.ToString(), out matrixCol);

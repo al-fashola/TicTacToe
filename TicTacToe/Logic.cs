@@ -43,6 +43,38 @@ public static class Logic
        }
        else return false;
    }
-    
+
+
+   public static bool AiPopulation(char[,] grid,  int matrixSize)
+   {
+       int availableFieldsCounter = 0;
+       
+       List<int> rows = new List<int>();
+       List<int> columns = new List<int>();
+       
+       for (int x = 0; x < matrixSize; x++)
+       {
+           for (int y = 0; y < matrixSize; y++)
+           {
+               if (grid[x, y] == ' ')
+               {
+                   rows.Add(x);
+                   rows.Add(y);
+                   availableFieldsCounter++;
+               }
+           }
+       }
+
+       if (availableFieldsCounter < 1)
+       {
+           Console.WriteLine("All available fields have been populated (AI)");
+           return false;
+       }
+       
+       Random rnd = new Random();
+       int populationVal = rnd.Next(0, rows.Count+1);
+       grid[rows[populationVal], columns[populationVal]] = 'O';
+       return true;
+   }
     
 }
