@@ -11,7 +11,7 @@ public static class Ui
     {
         Console.WriteLine("Hello, Welcome to Tic-Tac-Toe!");
         Console.WriteLine("You will be asked to take turns against the computer after each symbol entry ");
-        Console.WriteLine("Please enter your name");
+        Console.WriteLine("You will begin first. Please enter your name:");
         string name = Console.ReadLine();
 
         return name;
@@ -70,6 +70,11 @@ public static class Ui
     public static void DisplayLocationPopulatedMessage()
     {
         Console.WriteLine("This Location is already populated, please enter in new coordinates");
+    }
+    
+    public static void DisplayValidCoordinatesEntryMessage()
+    {
+        Console.WriteLine("\nPlease enter only valid integers from the presented positions as entry");
     }
     
     

@@ -17,6 +17,9 @@ class Program
         
         Ui.DisplayGridCoordinates(MATRIX_GRID_SIZE, MATRIX_GRID_SIZE);
         
+        //Populate the array initially
+        Logic.GridInitialPopulation(grid, MATRIX_GRID_SIZE, MATRIX_GRID_SIZE);
+        
         bool firstEntrySuccessful = false;
         bool secondEntrySuccessful = false;
         int matrixRow = 0, matrixCol = 0;
@@ -25,37 +28,44 @@ class Program
        var MatrixCoordinates =  Ui.UserCoordinatesEntry();
        firstEntrySuccessful = int.TryParse(MatrixCoordinates.FirstEntry.ToString(), out matrixRow);
        secondEntrySuccessful = int.TryParse(MatrixCoordinates.SecondEntry.ToString(), out matrixCol);
+       
+       bool gridPopulationSuccessful = false;
 
-       while ((!firstEntrySuccessful && !secondEntrySuccessful) || matrixRow >= MATRIX_GRID_SIZE || matrixCol >= MATRIX_GRID_SIZE)
+       while (gridPopulationSuccessful == false)
        {
-           Console.WriteLine("\nPlease enter only valid integers from the presented positions as entry");
+           if ((!firstEntrySuccessful && !secondEntrySuccessful)
+               || matrixRow >= MATRIX_GRID_SIZE
+               || matrixCol >= MATRIX_GRID_SIZE)
+           {
+               Ui.DisplayValidCoordinatesEntryMessage();
+           }
+           else if (Logic.GridNotPopulatedCheck(grid, matrixRow, matrixCol) == false)
+           {
+               Ui.DisplayLocationPopulatedMessage(); 
+           }
+           else
+           {
+               gridPopulationSuccessful = Logic.GridPopulation(grid, matrixRow, matrixCol, 'X');
+               //populate the grid with Player x, coordinates and then have the Ai populate as well
+               break;
+           }
+           // Only repeats the steps here 
            MatrixCoordinates =  Ui.UserCoordinatesEntry();
            firstEntrySuccessful = int.TryParse(MatrixCoordinates.FirstEntry.ToString(), out matrixRow);
            secondEntrySuccessful = int.TryParse(MatrixCoordinates.SecondEntry.ToString(), out matrixCol);
        }
        
+       gridPopulationSuccessful = false;
        
-       //Populate the array initially
-       for (int x = 0; x < MATRIX_GRID_SIZE; x++)
-       {
-           for (int y = 0; y < MATRIX_GRID_SIZE; y++)
-           {
-               grid[x, y] = ' ';
-           }
-       }
+       
+       // need a function that has a list of available coordinates where ' ' is present, picks one in the list
+       // at random then uses the vairables of that position  to populate 'O' using poplation function 
+       //Scetion to check if the game is over if not repeat the above steps with go to 
+       
+       
        
        //Use game over bool to check if there is a match consistently in any direction or if there are no spaces left ot enter
        
-       // Check if location is already populated
-           if (grid[matrixRow, matrixCol] == ' ')
-           {
-               grid[matrixRow, matrixCol] = 'X';
-           }
-           else
-           {
-               Ui.DisplayLocationPopulatedMessage();
-               
-           }
            
            
            //Method in UI class for display current grid once issue is resolved
