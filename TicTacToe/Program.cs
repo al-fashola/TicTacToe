@@ -32,7 +32,7 @@ class Program
        bool gridPopulationSuccessful = false;
        bool aiPopulationSuccessful = false;
 
-       while (gridPopulationSuccessful == false)
+       while (gridPopulationSuccessful == false /*|| gameOverCheck*/)
        {
            if ((!firstEntrySuccessful && !secondEntrySuccessful)
                || matrixRow >= MATRIX_GRID_SIZE
@@ -46,7 +46,7 @@ class Program
            }
            else
            {
-               //populate the grid with Player x, coordinates and then have the Ai populate as well
+               //populate the grid with Player X, coordinates and then have the Ai auto populate O
                gridPopulationSuccessful = Logic.GridPopulation(grid, matrixRow, matrixCol, 'X');
                aiPopulationSuccessful = Logic.AiPopulation(grid, MATRIX_GRID_SIZE);
                break;

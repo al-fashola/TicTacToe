@@ -72,9 +72,56 @@ public static class Logic
        }
        
        Random rnd = new Random();
-       int populationVal = rnd.Next(0, rows.Count);
+       int populationVal = rnd.Next(0, rows.Count); 
        grid[rows[populationVal], columns[populationVal]] = 'O';
        return true;
    }
-    
+
+
+   public static bool GameOverCheck(char[,] grid, int matrixSize)
+   {
+       bool gameOver = false;
+       
+       
+       
+       
+
+       return gameOver;
+   }
+   
+   public static bool DiagonolValidation(char[,] grid, int matrixSize)
+   {
+       // Need to return who won! 
+       // could try returning '-' for draw, or the characters of the winner e.g. 'x','o'
+       // but will need to be considerate of This will need to check who is the first person to win and run multiple times
+       // should i break this down into multiple separate functions? that will encorporate a bigger function GameOverCheck
+       // that is run after each turn (2 players going) 
+       
+       bool gameOver = false;
+       
+       //((grid[0, 0] == grid[1, 1] && grid[1, 1] == grid[2, 2]) 
+       // || (grid[2, 0] == grid[1, 1] && grid[1, 0] == grid[0, 2]))
+       int matchCounter = 0;
+       int matchCounterAlt = 0;
+
+       int centerValueInt = matrixSize / 2;
+       int matchValue = grid[centerValueInt, centerValueInt];
+
+       for (int h = 0, i = 0, j = matrixSize - 1; h < matrixSize; h++, i++, j--)
+       {
+           if (matchValue == grid[h, i]) matchCounter++;
+           if (matchValue == grid[j, i]) matchCounterAlt++;
+       }
+
+       if (matchCounter == matrixSize || matchCounterAlt == matrixSize)
+       {
+           gameOver = true;
+       }
+       
+       return gameOver;
+   }
+   
+   
+   
+
 }
