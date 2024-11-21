@@ -59,7 +59,7 @@ public static class Logic
                if (grid[x, y] == ' ')
                {
                    rows.Add(x);
-                   rows.Add(y);
+                   columns.Add(y);
                    availableFieldsCounter++;
                }
            }
@@ -72,7 +72,7 @@ public static class Logic
        }
        
        Random rnd = new Random();
-       int populationVal = rnd.Next(0, rows.Count+1);
+       int populationVal = rnd.Next(0, rows.Count);
        grid[rows[populationVal], columns[populationVal]] = 'O';
        return true;
    }
