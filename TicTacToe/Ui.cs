@@ -61,7 +61,7 @@ public static class Ui
             MatrixCoordinates.FirstEntry = row;
             MatrixCoordinates.SecondEntry = col;
         }
-        ;
+        
         
         return MatrixCoordinates;
     }

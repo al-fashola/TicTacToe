@@ -46,9 +46,32 @@ class Program
            }
            else
            {
+               bool gameWinX = false, gameWinO = false;
+               //var winner = CustomClasses.GameWinner();
+               
+               
                //populate the grid with Player X, coordinates and then have the Ai auto populate O
                gridPopulationSuccessful = Logic.GridPopulation(grid, matrixRow, matrixCol, 'X');
+               gameWinX = Logic.GameOverCheck(grid, MATRIX_GRID_SIZE, 'X');
+               if (gameWinX)
+               {
+                   //print winning messsage
+                   // display grid
+                   break; //double break or exit
+               }
+               // if player true win then break and display grid function and double break-break exit
                aiPopulationSuccessful = Logic.AiPopulation(grid, MATRIX_GRID_SIZE);
+               gameWinO = Logic.GameOverCheck(grid, MATRIX_GRID_SIZE, 'O');  
+               if (gameWinO)
+               {
+                   //print winning messsage
+                   // display grid
+                   break; //double break or exit
+               }
+               
+               //There needs to be a draw check utilizing when theres no spaces left for entry and bool of both false
+               // is there a way to use out parameter to release availableFieldsCounter when 1 or 0 fields available and no win = draw
+               
                break;
            }
            // Only repeats the steps here when else above is not true 
@@ -58,16 +81,12 @@ class Program
        }
        
        gridPopulationSuccessful = false;
+       // consider this placement for looping in each entry and possibly second while. should this go here?
        
        
        // need a function that has a list of available coordinates where ' ' is present, picks one in the list
        // at random then uses the vairables of that position  to populate 'O' using poplation function 
        //Scetion to check if the game is over if not repeat the above steps with go to 
-       
-       
-       
-       //Use game over bool to check if there is a match consistently in any direction or if there are no spaces left ot enter
-       
            
            
            //Method in UI class for display current grid once issue is resolved

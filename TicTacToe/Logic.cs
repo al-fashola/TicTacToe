@@ -78,18 +78,26 @@ public static class Logic
    }
 
 
-   public static bool GameOverCheck(char[,] grid, int matrixSize)
+   public static bool GameOverCheck(char[,] grid, int matrixSize, char player)
    {
        bool gameOver = false;
-       
-       
-       
-       
 
+       if (DiagonolWinValidation(grid, matrixSize, player))
+       {
+           gameOver = true;
+       }
+       else if (HorizontalWinValidation(grid, matrixSize, player))
+       {
+           gameOver = true;
+       }
+       else if (VerttcalWinValidation(grid, matrixSize, player))
+       {
+           gameOver = true;
+       }
        return gameOver;
    }
    
-   public static bool DiagonolValidation(char[,] grid, int matrixSize)
+   public static bool DiagonolWinValidation(char[,] grid, int matrixSize, char player)
    {
        // Need to return who won! 
        // could try returning '-' for draw, or the characters of the winner e.g. 'x','o'
@@ -97,10 +105,11 @@ public static class Logic
        // should i break this down into multiple separate functions? that will encorporate a bigger function GameOverCheck
        // that is run after each turn (2 players going) 
        
+       //!! need to validate the character for player in the middle case is matched before counter usage 
+       
+       
        bool gameOver = false;
        
-       //((grid[0, 0] == grid[1, 1] && grid[1, 1] == grid[2, 2]) 
-       // || (grid[2, 0] == grid[1, 1] && grid[1, 0] == grid[0, 2]))
        int matchCounter = 0;
        int matchCounterAlt = 0;
 
@@ -109,8 +118,8 @@ public static class Logic
 
        for (int h = 0, i = 0, j = matrixSize - 1; h < matrixSize; h++, i++, j--)
        {
-           if (matchValue == grid[h, i]) matchCounter++;
-           if (matchValue == grid[j, i]) matchCounterAlt++;
+           if (matchValue == grid[h, i] && matchValue == player) matchCounter++;
+           if (matchValue == grid[j, i] && matchValue == player) matchCounterAlt++;
        }
 
        if (matchCounter == matrixSize || matchCounterAlt == matrixSize)
@@ -118,6 +127,51 @@ public static class Logic
            gameOver = true;
        }
        
+       return gameOver;
+   }
+   
+   public static bool HorizontalWinValidation(char[,] grid, int matrixSize, char player)
+   {
+       bool gameOver = false;
+       
+       for (int i = 0; i < matrixSize; i++)
+       {
+           int matchCounter = 0;
+           int firstValue = grid[i, 0];
+           for (int j = 0; j < matrixSize; j++)
+           {
+               if (firstValue == grid[i, j] && firstValue== player) matchCounter++;
+           }
+           if (matchCounter == matrixSize)
+           {
+               gameOver = true;
+               break;
+           }
+       }
+      
+       return gameOver;
+   }
+   
+   public static bool VerttcalWinValidation(char[,] grid, int matrixSize, char player)
+   {
+       bool gameOver = false;
+       
+       for (int i = 0; i < matrixSize; i++)
+       {
+           int matchCounter = 0;
+           int firstValue = grid[0, i];
+           for (int j = 0; j < matrixSize; j++)
+           {
+               if (firstValue == grid[j, i] && firstValue == player) matchCounter++;
+           }
+
+           if (matchCounter == matrixSize)
+           {
+               gameOver = true;
+               break;
+           }
+       }
+      
        return gameOver;
    }
    
