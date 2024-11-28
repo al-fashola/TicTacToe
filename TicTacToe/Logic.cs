@@ -90,7 +90,7 @@ public static class Logic
        {
            gameOver = true;
        }
-       else if (VerttcalWinValidation(grid, matrixSize, player))
+       else if (VerticalWinValidation(grid, matrixSize, player))
        {
            gameOver = true;
        }
@@ -152,7 +152,7 @@ public static class Logic
        return gameOver;
    }
    
-   public static bool VerttcalWinValidation(char[,] grid, int matrixSize, char player)
+   public static bool VerticalWinValidation(char[,] grid, int matrixSize, char player)
    {
        bool gameOver = false;
        
