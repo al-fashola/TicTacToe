@@ -33,7 +33,7 @@ class Program
        bool gridPopulationSuccessful = false;
        bool aiPopulationSuccessful = false;
 
-       while (gridPopulationSuccessful == false /*|| gameOverCheck*/)
+       while (!gridPopulationSuccessful /*|| gameOverCheck*/)
        {
            if ((!firstEntrySuccessful && !secondEntrySuccessful)
                || matrixRow >= Constants.MATRIX_GRID_SIZE
@@ -41,7 +41,7 @@ class Program
            {
                Ui.DisplayValidCoordinatesEntryMessage();
            }
-           else if (Logic.GridNotPopulatedCheck(grid, matrixRow, matrixCol) == false)
+           else if (!Logic.GridNotPopulatedCheck(grid, matrixRow, matrixCol))
            {
                Ui.DisplayLocationPopulatedMessage(); 
            }
