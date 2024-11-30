@@ -41,7 +41,7 @@ class Program
            {
                Ui.DisplayValidCoordinatesEntryMessage();
            }
-           else if (!Logic.GridNotPopulatedCheck(grid, matrixRow, matrixCol))
+           else if (!Logic.CheckGridIsNotPopulated(grid, matrixRow, matrixCol))
            {
                Ui.DisplayLocationPopulatedMessage(); 
            }

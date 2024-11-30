@@ -26,7 +26,7 @@ public static class Logic
     }
     
     
-   public static bool GridNotPopulatedCheck(char [,] grid, int row, int column)
+   public static bool CheckGridIsNotPopulated(char [,] grid, int row, int column)
    {
 
        if (grid[row, column] == Constants.EMPTY_SPACE)
