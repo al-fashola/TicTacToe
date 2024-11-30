@@ -91,14 +91,8 @@ class Program
            
            
            //Method in UI class for display current grid once issue is resolved
-           for (int x = 0; x < Constants.MATRIX_GRID_SIZE; x++)
-           {
-               for (int y = 0; y < Constants.MATRIX_GRID_SIZE; y++)
-               {
-                   Console.Write($"|{grid[x,y]}|");
-               }
-               Console.WriteLine("");
-           }
+           Ui.DisplayGrid(grid, Constants.MATRIX_GRID_SIZE, Constants.MATRIX_GRID_SIZE);
+           
        
        
        
@@ -117,6 +111,9 @@ class Program
         
         
         
+       
+       
+       
         // Please ignore all below - this was a test exercise
         /*
         Console.WriteLine("Hello, World!");

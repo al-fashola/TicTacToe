@@ -30,8 +30,8 @@ public static class Ui
         }
     }
     
-    /*
-    public static void DisplayGrid(Array grid, int matrixA, int matrixB)
+    
+    public static void DisplayGrid(char[,] grid , int matrixA, int matrixB)
     {
         
         for (int x = 0; x < matrixA; x++)
@@ -43,7 +43,7 @@ public static class Ui
             Console.WriteLine("");
         }
     }
-    */
+    
     
     public static CustomClasses.MatrixCoordinates UserCoordinatesEntry()
     {
