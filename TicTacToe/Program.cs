@@ -4,21 +4,22 @@ using TicTacToe;
 
 namespace TicTacToe;
 
+
 class Program
 {
     static void Main(string[] args)
     {
-        const int MATRIX_GRID_SIZE = 3;
+        
         string name; 
        
         name = Ui.UserEntryMessage();
         
-        char [,] grid = new char[MATRIX_GRID_SIZE, MATRIX_GRID_SIZE];
+        char [,] grid = new char[Constants.MATRIX_GRID_SIZE, Constants.MATRIX_GRID_SIZE];
         
-        Ui.DisplayGridCoordinates(MATRIX_GRID_SIZE, MATRIX_GRID_SIZE);
+        Ui.DisplayGridCoordinates(Constants.MATRIX_GRID_SIZE, Constants.MATRIX_GRID_SIZE);
         
         //Populate the array initially
-        Logic.GridInitialPopulation(grid, MATRIX_GRID_SIZE, MATRIX_GRID_SIZE);
+        Logic.GridInitialPopulation(grid, Constants.MATRIX_GRID_SIZE, Constants.MATRIX_GRID_SIZE);
         
         bool firstEntrySuccessful = false;
         bool secondEntrySuccessful = false;
@@ -35,8 +36,8 @@ class Program
        while (gridPopulationSuccessful == false /*|| gameOverCheck*/)
        {
            if ((!firstEntrySuccessful && !secondEntrySuccessful)
-               || matrixRow >= MATRIX_GRID_SIZE
-               || matrixCol >= MATRIX_GRID_SIZE)
+               || matrixRow >= Constants.MATRIX_GRID_SIZE
+               || matrixCol >= Constants.MATRIX_GRID_SIZE)
            {
                Ui.DisplayValidCoordinatesEntryMessage();
            }
@@ -52,7 +53,7 @@ class Program
                
                //populate the grid with Player X, coordinates and then have the Ai auto populate O
                gridPopulationSuccessful = Logic.GridPopulation(grid, matrixRow, matrixCol, 'X');
-               gameWinX = Logic.GameOverCheck(grid, MATRIX_GRID_SIZE, 'X');
+               gameWinX = Logic.GameOverCheck(grid, Constants.MATRIX_GRID_SIZE, 'X');
                if (gameWinX)
                {
                    //print winning messsage
@@ -60,8 +61,8 @@ class Program
                    break; //double break or exit
                }
                // if player true win then break and display grid function and double break-break exit
-               aiPopulationSuccessful = Logic.AiPopulation(grid, MATRIX_GRID_SIZE);
-               gameWinO = Logic.GameOverCheck(grid, MATRIX_GRID_SIZE, 'O');  
+               aiPopulationSuccessful = Logic.AiPopulation(grid, Constants.MATRIX_GRID_SIZE);
+               gameWinO = Logic.GameOverCheck(grid, Constants.MATRIX_GRID_SIZE, 'O');  
                if (gameWinO)
                {
                    //print winning messsage
@@ -90,9 +91,9 @@ class Program
            
            
            //Method in UI class for display current grid once issue is resolved
-           for (int x = 0; x < MATRIX_GRID_SIZE; x++)
+           for (int x = 0; x < Constants.MATRIX_GRID_SIZE; x++)
            {
-               for (int y = 0; y < MATRIX_GRID_SIZE; y++)
+               for (int y = 0; y < Constants.MATRIX_GRID_SIZE; y++)
                {
                    Console.Write($"|{grid[x,y]}|");
                }
@@ -111,7 +112,7 @@ class Program
         
         
         
-       // grid = Logic.CreateArray(MATRIX_GRID_SIZE, MATRIX_GRID_SIZE);
+       // grid = Logic.CreateArray(Constants.MATRIX_GRID_SIZE, Constants.MATRIX_GRID_SIZE);
         
         
         

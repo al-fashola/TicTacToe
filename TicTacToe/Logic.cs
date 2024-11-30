@@ -3,6 +3,8 @@ namespace TicTacToe;
 public static class Logic
 {
 
+    public static Random rnd = new Random();
+    
     //Not necessary to create an array in the logic seperately
     public static Array CreateArray(int sizeA, int sizeB)
     {
@@ -27,7 +29,7 @@ public static class Logic
    public static bool GridNotPopulatedCheck(char [,] grid, int row, int column)
    {
 
-       if (grid[row, column] == ' ')
+       if (grid[row, column] == Constants.EMPTY_SPACE)
        {
            return true;
        }
@@ -36,12 +38,12 @@ public static class Logic
    
    public static bool GridPopulation(char [,] grid, int row, int column, char player)
    {
-       if (grid[row, column] == ' ')
+       if (grid[row, column] == Constants.EMPTY_SPACE)
        {
            grid[row, column] = player;
            return true;
        }
-       else return false;
+       return false;
    }
 
 
@@ -56,7 +58,7 @@ public static class Logic
        {
            for (int y = 0; y < matrixSize; y++)
            {
-               if (grid[x, y] == ' ')
+               if (grid[x, y] == Constants.EMPTY_SPACE)
                {
                    rows.Add(x);
                    columns.Add(y);
@@ -71,7 +73,7 @@ public static class Logic
            return false;
        }
        
-       Random rnd = new Random();
+       
        int populationVal = rnd.Next(0, rows.Count); 
        grid[rows[populationVal], columns[populationVal]] = 'O';
        return true;
