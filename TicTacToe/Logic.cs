@@ -6,9 +6,9 @@ public static class Logic
     public static Random rnd = new Random();
     
     //Not necessary to create an array in the logic seperately
-    public static Array CreateArray(int sizeA, int sizeB)
+    public static char[,] CreateGrid(int sizeA, int sizeB)
     {
-        int [,] grid = new int[sizeA, sizeB];
+        char [,] grid = new char[sizeA, sizeB];
         return grid;
     }
     
@@ -75,7 +75,7 @@ public static class Logic
        
        
        int populationVal = rnd.Next(0, rows.Count); 
-       grid[rows[populationVal], columns[populationVal]] = 'O';
+       grid[rows[populationVal], columns[populationVal]] = Constants.AI_PLAYER_CHARACTER;
        return true;
    }
 
