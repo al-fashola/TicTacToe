@@ -77,6 +77,11 @@ public static class Ui
         Console.WriteLine("\nPlease enter only valid integers from the presented positions as entry");
     }
     
+    public static void DisplayWinnerMessage( string name, char player)
+    {
+        Console.WriteLine($"Congratulation Player {player} wins! Well done {name}");
+    }
+    
     
 }
 
