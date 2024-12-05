@@ -16,7 +16,7 @@ class Program
         
         Ui.DisplayGridCoordinates(Constants.MATRIX_GRID_SIZE, Constants.MATRIX_GRID_SIZE);
         
-        //Populate the char array initially
+        //Initial char array population
         Logic.GridInitialPopulation(grid, Constants.MATRIX_GRID_SIZE, Constants.MATRIX_GRID_SIZE);
         
         bool gameWinX = false, gameWinO = false;
