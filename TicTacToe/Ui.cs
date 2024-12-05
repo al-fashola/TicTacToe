@@ -4,9 +4,7 @@ namespace TicTacToe;
 
 public static class Ui
 {
-
-
-
+    
     public static string UserEntryMessage()
     {
         Console.WriteLine("Hello, Welcome to Tic-Tac-Toe!");
@@ -47,8 +45,6 @@ public static class Ui
     
     public static CustomClasses.MatrixCoordinates UserCoordinatesEntry()
     {
-
-        //This could be represented in the form of internally numbered grid identifiers matching the matrix length for easier user readability instead of grid entires
         Console.WriteLine("\nPlease enter your grid choices below");
         Console.WriteLine("Please enter the row of your grid choice:");
         char row = Console.ReadKey().KeyChar;
@@ -80,6 +76,11 @@ public static class Ui
     public static void DisplayWinnerMessage( string name, char player)
     {
         Console.WriteLine($"Congratulation Player {player} wins! Well done {name}");
+    }
+    
+    public static void DisplayGameDrawMessage()
+    {
+        Console.WriteLine("All available fields have been populated, The match is a draw");
     }
     
     

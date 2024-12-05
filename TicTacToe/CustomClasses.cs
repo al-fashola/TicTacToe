@@ -8,9 +8,9 @@ public class CustomClasses
         public char SecondEntry;
     }
     
-    public class GameWinner
+    public class Aipopulation
     {
-        public bool GameOver;
-        public char Player;
+        public bool SuccessfullPopulation;
+        public int AvailableMatrixLocations;
     }
 }

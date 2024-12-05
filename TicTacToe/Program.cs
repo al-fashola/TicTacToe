@@ -9,9 +9,7 @@ class Program
 {
     static void Main(string[] args)
     {
-        
         string name; 
-       
         name = Ui.UserEntryMessage();
         
         char [,] grid = new char[Constants.MATRIX_GRID_SIZE, Constants.MATRIX_GRID_SIZE];
@@ -22,9 +20,10 @@ class Program
         Logic.GridInitialPopulation(grid, Constants.MATRIX_GRID_SIZE, Constants.MATRIX_GRID_SIZE);
         
         bool gameWinX = false, gameWinO = false;
+        int availableLocationsCount = (Constants.MATRIX_GRID_SIZE * Constants.MATRIX_GRID_SIZE); 
         
         //while loop here for game over 
-        while (!gameWinX && !gameWinO)
+        while (!gameWinX && !gameWinO && availableLocationsCount > 0)
         {
             
             bool firstEntrySuccessful = false;
@@ -38,6 +37,7 @@ class Program
            
            bool gridPopulationSuccessful = false;
            bool aiPopulationSuccessful = false;
+           
 
            while (!gridPopulationSuccessful)
            {
@@ -61,18 +61,20 @@ class Program
                        Ui.DisplayWinnerMessage(name, Constants.USER_PLAYER_CHARACTER);
                        break; 
                    }
-                   // if player true win then break and display grid function and double break-break exit
-                   aiPopulationSuccessful = Logic.AiPopulation(grid, Constants.MATRIX_GRID_SIZE);
-                   gameWinO = Logic.GameOverCheck(grid, Constants.MATRIX_GRID_SIZE, Constants.AI_PLAYER_CHARACTER);  
+                   var Aipopulation = Logic.AiPopulation(grid, Constants.MATRIX_GRID_SIZE);
+                   
+                   aiPopulationSuccessful = Aipopulation.SuccessfullPopulation;
+                   availableLocationsCount = Aipopulation.AvailableMatrixLocations;
+                   
+                   gameWinO = Logic.GameOverCheck(grid, Constants.MATRIX_GRID_SIZE, Constants.AI_PLAYER_CHARACTER);
+                   if (!gameWinO && !gameWinX && !aiPopulationSuccessful)
+                   {
+                       Ui.DisplayGameDrawMessage();
+                   }
                    if (gameWinO)
                    {
                        Ui.DisplayWinnerMessage("Computer", Constants.AI_PLAYER_CHARACTER);
-                       break; 
                    }
-                   
-                   //There needs to be a draw check utilizing when theres no spaces left for entry and bool of both false
-                   // is there a way to use out parameter to release availableFieldsCounter when 1 or 0 fields available and no win = draw
-                   
                    break;
                }
                // Only repeats the steps here when else above is not true 
@@ -80,7 +82,6 @@ class Program
                firstEntrySuccessful = int.TryParse(MatrixCoordinates.FirstEntry.ToString(), out matrixRow);
                secondEntrySuccessful = int.TryParse(MatrixCoordinates.SecondEntry.ToString(), out matrixCol);
            }
-           
            gridPopulationSuccessful = false;
            Ui.DisplayGrid(grid, Constants.MATRIX_GRID_SIZE, Constants.MATRIX_GRID_SIZE);
         }

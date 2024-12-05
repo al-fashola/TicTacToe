@@ -6,7 +6,4 @@ public class Constants
     public const int MATRIX_GRID_SIZE = 3;
     public const char AI_PLAYER_CHARACTER = 'O';
     public const char USER_PLAYER_CHARACTER = 'X';
-
-    
-    
 }

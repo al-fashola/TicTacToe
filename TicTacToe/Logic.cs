@@ -4,15 +4,6 @@ public static class Logic
 {
 
     public static Random rnd = new Random();
-    
-    //Not necessary to create an array in the logic seperately
-    public static char[,] CreateGrid(int sizeA, int sizeB)
-    {
-        char [,] grid = new char[sizeA, sizeB];
-        return grid;
-    }
-    
-    
      
     public static void GridInitialPopulation(char[,] grid, int sizeA, int sizeB)
     {
@@ -47,9 +38,10 @@ public static class Logic
    }
 
 
-   public static bool AiPopulation(char[,] grid,  int matrixSize)
+   public static CustomClasses.Aipopulation AiPopulation(char[,] grid,  int matrixSize)
    {
        int availableFieldsCounter = 0;
+       bool successfullyPopulated;
        
        List<int> rows = new List<int>();
        List<int> columns = new List<int>();
@@ -69,14 +61,23 @@ public static class Logic
 
        if (availableFieldsCounter < 1)
        {
-           Console.WriteLine("All available fields have been populated (AI)");
-           return false;
+           successfullyPopulated = false;
+       }
+       else
+       {
+           int populationVal = rnd.Next(0, rows.Count); 
+           grid[rows[populationVal], columns[populationVal]] = Constants.AI_PLAYER_CHARACTER;
+           successfullyPopulated = true;
        }
        
+       var MatrixPopulation = new CustomClasses.Aipopulation();
+       {
+           MatrixPopulation.SuccessfullPopulation = successfullyPopulated;
+           MatrixPopulation.AvailableMatrixLocations = availableFieldsCounter;
+       }
+           
+       return MatrixPopulation;
        
-       int populationVal = rnd.Next(0, rows.Count); 
-       grid[rows[populationVal], columns[populationVal]] = Constants.AI_PLAYER_CHARACTER;
-       return true;
    }
 
 
@@ -84,7 +85,7 @@ public static class Logic
    {
        bool gameOver = false;
 
-       if (DiagonolWinValidation(grid, matrixSize, player))
+       if (DiagonalWinValidation(grid, matrixSize, player))
        {
            gameOver = true;
        }
@@ -99,16 +100,9 @@ public static class Logic
        return gameOver;
    }
    
-   public static bool DiagonolWinValidation(char[,] grid, int matrixSize, char player)
+   public static bool DiagonalWinValidation(char[,] grid, int matrixSize, char player)
    {
-       // Need to return who won! 
        // could try returning '-' for draw, or the characters of the winner e.g. 'x','o'
-       // but will need to be considerate of This will need to check who is the first person to win and run multiple times
-       // should i break this down into multiple separate functions? that will encorporate a bigger function GameOverCheck
-       // that is run after each turn (2 players going) 
-       
-       //!! need to validate the character for player in the middle case is matched before counter usage 
-       
        
        bool gameOver = false;
        
