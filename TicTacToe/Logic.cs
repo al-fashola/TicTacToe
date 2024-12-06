@@ -5,7 +5,7 @@ public static class Logic
 
     public static Random rnd = new Random();
      
-    public static void GridInitialPopulation(char[,] grid, int sizeA, int sizeB)
+    public static void PopulateInitialGrid(char[,] grid, int sizeA, int sizeB)
     {
         for (int x = 0; x < sizeA; x++)
         {
@@ -27,7 +27,7 @@ public static class Logic
        else return false;
    }
    
-   public static bool GridPopulation(char [,] grid, int row, int column, char player)
+   public static bool PopulateGrid(char [,] grid, int row, int column, char player)
    {
        if (grid[row, column] == Constants.EMPTY_SPACE)
        {
@@ -38,7 +38,7 @@ public static class Logic
    }
 
 
-   public static CustomClasses.Aipopulation AiPopulation(char[,] grid,  int matrixSize)
+   public static CustomClasses.Aipopulation PopulateAiTurn(char[,] grid,  int matrixSize)
    {
        int availableFieldsCounter = 0;
        bool successfullyPopulated;
@@ -85,22 +85,22 @@ public static class Logic
    {
        bool gameOver = false;
 
-       if (DiagonalWinValidation(grid, matrixSize, player))
+       if (ValidateDiagonalWin(grid, matrixSize, player))
        {
            gameOver = true;
        }
-       else if (HorizontalWinValidation(grid, matrixSize, player))
+       else if (ValidateHorizontalWin(grid, matrixSize, player))
        {
            gameOver = true;
        }
-       else if (VerticalWinValidation(grid, matrixSize, player))
+       else if (ValidateVerticalWin(grid, matrixSize, player))
        {
            gameOver = true;
        }
        return gameOver;
    }
    
-   public static bool DiagonalWinValidation(char[,] grid, int matrixSize, char player)
+   public static bool ValidateDiagonalWin(char[,] grid, int matrixSize, char player)
    {
        // could try returning '-' for draw, or the characters of the winner e.g. 'x','o'
        
@@ -126,7 +126,7 @@ public static class Logic
        return gameOver;
    }
    
-   public static bool HorizontalWinValidation(char[,] grid, int matrixSize, char player)
+   public static bool ValidateHorizontalWin(char[,] grid, int matrixSize, char player)
    {
        bool gameOver = false;
        
@@ -148,7 +148,7 @@ public static class Logic
        return gameOver;
    }
    
-   public static bool VerticalWinValidation(char[,] grid, int matrixSize, char player)
+   public static bool ValidateVerticalWin(char[,] grid, int matrixSize, char player)
    {
        bool gameOver = false;
        

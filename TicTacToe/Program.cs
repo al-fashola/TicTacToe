@@ -17,7 +17,7 @@ class Program
         Ui.DisplayGridCoordinates(Constants.MATRIX_GRID_SIZE, Constants.MATRIX_GRID_SIZE);
         
         //Initial char array population
-        Logic.GridInitialPopulation(grid, Constants.MATRIX_GRID_SIZE, Constants.MATRIX_GRID_SIZE);
+        Logic.PopulateInitialGrid(grid, Constants.MATRIX_GRID_SIZE, Constants.MATRIX_GRID_SIZE);
         
         bool gameWinX = false, gameWinO = false;
         int availableLocationsCount = (Constants.MATRIX_GRID_SIZE * Constants.MATRIX_GRID_SIZE); 
@@ -54,14 +54,14 @@ class Program
                else
                {
                    //populate the grid with Player X, coordinates and then have the Ai auto populate O
-                   gridPopulationSuccessful = Logic.GridPopulation(grid, matrixRow, matrixCol, Constants.USER_PLAYER_CHARACTER);
+                   gridPopulationSuccessful = Logic.PopulateGrid(grid, matrixRow, matrixCol, Constants.USER_PLAYER_CHARACTER);
                    gameWinX = Logic.GameOverCheck(grid, Constants.MATRIX_GRID_SIZE, Constants.USER_PLAYER_CHARACTER);
                    if (gameWinX)
                    {
                        Ui.DisplayWinnerMessage(name, Constants.USER_PLAYER_CHARACTER);
                        break; 
                    }
-                   var Aipopulation = Logic.AiPopulation(grid, Constants.MATRIX_GRID_SIZE);
+                   var Aipopulation = Logic.PopulateAiTurn(grid, Constants.MATRIX_GRID_SIZE);
                    
                    aiPopulationSuccessful = Aipopulation.SuccessfullPopulation;
                    availableLocationsCount = Aipopulation.AvailableMatrixLocations;
