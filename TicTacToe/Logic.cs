@@ -170,6 +170,17 @@ public static class Logic
       
        return gameOver;
    }
+
+
+
+   public static bool DisplayValidCoordinatesCheck(bool firstEntry, bool secondEntry, int row, int column)
+   {
+       bool successfullyPopulated = (!firstEntry && !secondEntry)
+                                    || row >= Constants.MATRIX_GRID_SIZE
+                                    || column >= Constants.MATRIX_GRID_SIZE;
+
+       return successfullyPopulated;
+   }
    
    
    

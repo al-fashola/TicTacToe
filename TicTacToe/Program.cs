@@ -25,7 +25,6 @@ class Program
         //while loop here for game over 
         while (!gameWinX && !gameWinO && availableLocationsCount > 0)
         {
-            
             bool firstEntrySuccessful = false;
             bool secondEntrySuccessful = false;
             int matrixRow = 0, matrixCol = 0;
@@ -41,9 +40,7 @@ class Program
 
            while (!gridPopulationSuccessful)
            {
-               if ((!firstEntrySuccessful && !secondEntrySuccessful)
-                   || matrixRow >= Constants.MATRIX_GRID_SIZE
-                   || matrixCol >= Constants.MATRIX_GRID_SIZE)
+               if (Logic.DisplayValidCoordinatesCheck(firstEntrySuccessful, secondEntrySuccessful, matrixRow, matrixCol))
                {
                    Ui.DisplayValidCoordinatesEntryMessage();
                }
